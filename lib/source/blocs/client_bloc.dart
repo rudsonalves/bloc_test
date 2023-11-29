@@ -1,11 +1,7 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:bloc_test/source/blocs/client_states.dart';
 import 'package:bloc_test/source/blocs/clients_events.dart';
 import 'package:bloc_test/source/repositories/clients_repository.dart';
-
-import '../commom/models/clients.dart';
 
 class ClientBloc extends Bloc<ClientEvent, ClientState> {
   final _clientRepository = ClientsRepository();
