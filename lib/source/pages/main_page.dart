@@ -21,12 +21,12 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
     bloc = ClientBloc();
-    bloc.inputClient.add(LoadClientEvent());
+    bloc.add(LoadClientEvent());
   }
 
   @override
   void dispose() {
-    bloc.inputClient.close();
+    bloc.close();
     super.dispose();
   }
 
@@ -52,7 +52,7 @@ class _MainPageState extends State<MainPage> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.person_add),
         onPressed: () {
-          bloc.inputClient.add(
+          bloc.add(
             AddClientEvent(
               client: Client(name: randomName()),
             ),
@@ -62,7 +62,7 @@ class _MainPageState extends State<MainPage> {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12),
         child: StreamBuilder<ClientState>(
-          stream: bloc.srteam,
+          stream: bloc.stream,
           builder: (context, AsyncSnapshot<ClientState> snapshot) {
             final clientsList = snapshot.data?.clients ?? [];
 
@@ -79,7 +79,7 @@ class _MainPageState extends State<MainPage> {
                 trailing: IconButton(
                   icon: const Icon(Icons.remove),
                   onPressed: () {
-                    bloc.inputClient.add(
+                    bloc.add(
                       RemoveClientEvent(client: clientsList[index]),
                     );
                   },
